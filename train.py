@@ -39,6 +39,7 @@ def get_model(name , device , num_classes,hidden_units):
     else :
         raise Exception("this model not found ")
     model.classifier = torch.nn.Sequential(
+        torch.nn.Flatten(),
         torch.nn.LazyLinear(512),
         torch.nn.ReLU(),
         torch.nn.Dropout(0.2),
