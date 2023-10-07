@@ -3,6 +3,7 @@ import torch
 import torchvision 
 import argparse
 from torch import nn
+import os , pickle
 sized_image =[225 ,225]
 def get_train_loader(train_path):
     data_transforms = torchvision.transforms.Compose([
@@ -120,9 +121,9 @@ def main():
     'criterion_state_dict': loss_fn.state_dict(),
     'class_to_idx' : data_set.class_to_idx
     }
-    import os
+    
     torch.save(checkpoint,os.path.join(args.save_dir , "checkpoint.pth") )
-    import pickle
+
     pickle.dump(model , open(os.path.join(args.save_dir ,"model_arc.pkl"), mode="wb"))
     
     
